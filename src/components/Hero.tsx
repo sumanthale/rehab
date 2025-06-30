@@ -10,6 +10,7 @@ import {
 import { motion } from "framer-motion";
 import { cn } from "../lib/utils";
 import { FlipWords } from "./UI/FlipWords";
+import { ColourfulText } from "./UI/ColourfulText";
 const stats = [
   {
     icon: Users,
@@ -74,13 +75,13 @@ const ModernHero = () => {
             {/* Heading */}
             <div className="space-y-2 gradient overflow-hidden">
               <h1 className="text-5xl lg:text-7xl font-display font-bold leading-tight">
-                <span className="text-slate-900 dark:text-white gradient-text">
+                <span className="text-slate-900 dark:text-white">
                   Transform{" "}
                 </span>
-                <span className="text-slate-900 dark:text-white  ">Your </span>
-
-                <FlipWords words={flipWords} />
-                <span className="text-slate-900 dark:text-white gradient-text">Journey </span>
+                <span className="text-slate-900 dark:text-white">Your </span>
+                <ColourfulText text="Recovery" />
+                {/* <FlipWords words={flipWords} /> */}
+                <span className="text-slate-900 dark:text-white">Journey </span>
               </h1>
             </div>
 

@@ -7,9 +7,7 @@ interface LotusIconProps {
 }
 
 const LotusIcon: React.FC<LotusIconProps> = ({
-  className = "",
   size = "md",
-  variant = "outline",
 }) => {
   const sizeClasses = {
     sm: "h-4",
@@ -18,13 +16,11 @@ const LotusIcon: React.FC<LotusIconProps> = ({
     xl: "h-12",
   };
 
-  const fillClass = variant === "filled" ? "fill-current" : "fill-none";
-
   return (
     <img
       src="https://anantharehab.com/wp-content/uploads/2025/03/lotus.png"
       alt="lotuc"
-      className={`${sizeClasses[size]} ${fillClass} ${className}`}
+      className={`${sizeClasses[size]}`}
     />
   );
 };
