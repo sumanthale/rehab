@@ -2,10 +2,6 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   Users,
-  ArrowRightLeft,
-  Heart,
-  Activity,
-  Zap,
   ArrowRight,
   Sparkles,
   Shield,
@@ -17,24 +13,24 @@ import { servicesData } from "../data/servicesData";
 
 const Services = () => {
   return (
-    <div className="min-h-screen bg-white dark:bg-dark-bg">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-lavender-50 dark:bg-dark-bg">
       {/* Hero Section */}
-      <section className="relative py-16 bg-gradient-to-br from-primary-50 to-lavender-50 dark:from-dark-surface dark:to-dark-bg overflow-hidden">
+      <section className="relative py-16 dark:from-dark-surface dark:to-dark-bg overflow-hidden">
         <LotusIcon className="absolute top-8 right-8 w-28 h-28 text-primary-300 opacity-10" />
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-12"
+            className="text-center mb-6"
           >
-            <div className="inline-flex items-center px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium mb-4">
-              <LotusIcon size="sm" className="mr-2" />
-              Our Services
+            <div className="inline-flex items-center px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-gray-600 dark:text-primary-300 rounded-full text-sm font-medium mb-4">
+              <LotusIcon size="sm" />
+              <span className="ml-2">Our Services</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-5xl  text-gray-900 dark:text-white mb-4">
               Comprehensive{" "}
-              <span className="bg-gradient-to-r from-primary-600 to-plum-700 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r font-bold from-primary-600 to-plum-700 bg-clip-text text-transparent">
                 Healthcare Solutions
               </span>
             </h2>
@@ -44,7 +40,7 @@ const Services = () => {
             </p>
           </motion.div>
 
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -68,14 +64,14 @@ const Services = () => {
                 </div>
               </div>
             ))}
-          </motion.div>
+          </motion.div> */}
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="pb-10 bg-white dark:bg-dark-bg">
+      <section className="pb-16  dark:bg-dark-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {servicesData.map((service, index) => {
               return (
                 <motion.div
@@ -87,7 +83,7 @@ const Services = () => {
                   className="group relative"
                 >
                   <Link to={`/services/${service.id}`}>
-                    <div className="relative bg-gradient-to-br from-gray-50 to-white dark:from-dark-surface dark:to-dark-bg rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700 overflow-hidden group-hover:-translate-y-2">
+                    <div className="relative bg-white dark:from-dark-surface dark:to-dark-bg rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700 overflow-hidden group-hover:-translate-y-2">
                       {/* Background Pattern */}
                       <div className="absolute top-0 right-0 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
                         <LotusPattern count={3} opacity={0.3} />
@@ -101,41 +97,48 @@ const Services = () => {
                       {/* Content */}
                       <div className="relative z-10">
                         {/* Icon */}
-                        <div
-                          className={`w-20 h-20 bg-gradient-to-br ${service.gradient} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
-                        >
-                          <img
+                        <div className="flex items-center justify-start mb-2">
+                          {/* <div
+                          className={`w-10 h-10 border rounded flex items-center justify-center  group-hover:scale-110 transition-transform duration-300 shadow-lg`}
+                          >
+                            <img
                             src={service.icon}
-                            className="w-10 h-10 text-white"
+                            className="w-5 h-5 text-white"
                           />
+                          </div> */}
+
+                        <div className="f">
+                          {/* Title */}
+                          <h3 className="text-2xl font-bold text-gray-900 dark:text-white ml-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-300">
+                            {service.name}
+                          </h3>
                         </div>
-
-                        {/* Title */}
-                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-300">
-                          {service.name}
-                        </h3>
-
+                        
+                        </div>
                         {/* Short Description */}
-                        <p className="text-primary-600 dark:text-primary-400 font-medium mb-4 text-sm">
+                        <div className="flex justify-between">
+                           <p className="text-gray-600 dark:text-primary-300 font-medium text-sm">
                           {service.shortDescription}
                         </p>
+                          <div className="flex items-center text-primary-600 dark:text-primary-400 font-medium group-hover:text-primary-700 dark:group-hover:text-primary-300 transition-colors duration-300">
+                            <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                          </div>
+                        </div>
+                       
 
                         {/* Description */}
-                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6 line-clamp-3">
+                        {/* <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6 line-clamp-3">
                           {service.description}
-                        </p>
+                        </p> */}
 
                         {/* Sub-services count */}
                         <div className="flex items-center justify-between">
-                          <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                          {/* <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
                             <div className="w-2 h-2 bg-primary-400 rounded-full mr-2" />
                             {service.subServices.length} specialized programs
-                          </div>
+                          </div> */}
 
-                          <div className="flex items-center text-primary-600 dark:text-primary-400 font-medium group-hover:text-primary-700 dark:group-hover:text-primary-300 transition-colors duration-300">
-                            Explore
-                            <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                          </div>
+                          
                         </div>
                       </div>
 
@@ -151,75 +154,6 @@ const Services = () => {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="relative overflow-hidden py-8  bg-gradient-to-r from-primary-600 to-plum-700 text-white">
-        <LotusIcon className="absolute top-8 right-8 w-32 h-32 opacity-10" />
-        {/* <img
-          src="https://anantharehab.com/wp-content/uploads/2025/03/purple-bg-pattern.png"
-          alt="bgimg"
-          className="absolute bottom-0"
-        /> */}
-        <div className="max-w-3xl mx-auto px-4 text-center z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-2xl md:text-4xl font-bold mb-4">
-              Need Help Choosing the Right Service?
-            </h2>
-            <p className="text-base md:text-lg text-primary-100 mb-6">
-              Our expert team is here to guide you through personalized
-              treatment plans designed for your specific needs and recovery
-              goals.
-            </p>
-
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              {[
-                {
-                  label: "Schedule Consultation",
-                  to: "/contact",
-                  external: false,
-                  style:
-                    "bg-white text-primary-700 hover:bg-primary-50 shadow-lg",
-                },
-                {
-                  label: "Call Now",
-                  to: "tel:+91-40-1234-5678",
-                  external: true,
-                  style: "border-2 border-white text-white hover:bg-white/10",
-                },
-              ].map(({ label, to, external, style }, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  {external ? (
-                    <a
-                      href={to}
-                      className={`inline-flex items-center px-6 py-3 font-semibold rounded-xl transition-all duration-200 ${style}`}
-                    >
-                      {label}
-                      <ArrowRight className="ml-2 w-5 h-5" />
-                    </a>
-                  ) : (
-                    <Link
-                      to={to}
-                      className={`inline-flex items-center px-6 py-3 font-semibold rounded-xl transition-all duration-200 ${style}`}
-                    >
-                      {label}
-                      <ArrowRight className="ml-2 w-5 h-5" />
-                    </Link>
-                  )}
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-      
     </div>
   );
 };

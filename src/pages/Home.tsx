@@ -1,15 +1,15 @@
 import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
-import WhyChoose from '../components/WhyChoose';
-import Team from '../components/Team';
-import Testimonials from '../components/Testimonials';
+// import WhyChoose from '../components/WhyChoose';
+// import Team from '../components/Team';
+// import Testimonials from '../components/Testimonials';
 import TestimonialVideos from '../components/TestimonialVideos';
-import Resources from '../components/Resources';
-import Contact from '../components/Contact';
+// import Resources from '../components/Resources';
+// import Contact from '../components/Contact';
 import RecoveryInfographic from '../components/RecoveryInfographic';
 import FacilityShowcase from '../components/FacilityShowcase';
 import Leadership from '../components/Leadership';
-import DoctorLeadership from '../components/DoctorLeadership';
+// import DoctorLeadership from '../components/DoctorLeadership';
 import Services from './Services';
 
 const Home = () => {
@@ -23,16 +23,16 @@ const Home = () => {
       {/* <About /> */}
       <div className='-pt-20'></div>
       <Services />
-      <DoctorLeadership />
+      {/* <DoctorLeadership /> */}
       <RecoveryInfographic />
       <FacilityShowcase />
-      <WhyChoose />
-      <Team />
       <Leadership />
-      <Testimonials />
+      {/* <WhyChoose /> */}
+      {/* <Team /> */}
+      {/* <Testimonials /> */}
       <TestimonialVideos />
-      <Resources />
-      <Contact />
+      {/* <Resources /> */}
+      {/* <Contact /> */}
     </motion.main>
   );
 };

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Phone, Calendar, ChevronDown, Sparkles } from "lucide-react";
+import { Menu, X, Phone, Calendar, ChevronDown, CalendarDays } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import DarkModeToggle from "./DarkModeToggle";
@@ -49,7 +49,7 @@ const Header = () => {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`border-b fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
           ? "bg-glass-white dark:bg-glass-dark backdrop-blur-xl shadow-glass"
           : "bg-transparent"
@@ -113,7 +113,7 @@ const Header = () => {
                     to={item.href}
                     className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200 ${
                       isActive(item.href)
-                    ? "text-primary-600 dark:text-primary-400"
+                    ? "text-primary-800 dark:text-primary-600"
                     : "text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
                     }`}
                   >
@@ -121,7 +121,7 @@ const Header = () => {
                     {isActive(item.href) && (
                       <motion.div
                         layoutId="activeTab"
-                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary-600 dark:bg-primary-400 rounded-full"
+                        className="absolute -bottom-1 left-0 right-0 rounded-full"
                         initial={false}
                         transition={{
                           type: "spring",
@@ -138,9 +138,9 @@ const Header = () => {
 
           {/* CTA Buttons & Dark Mode Toggle */}
           <div className="hidden lg:flex items-center space-x-4">
-            <DarkModeToggle />
+            {/* <DarkModeToggle /> */}
 
-            <motion.a
+            {/* <motion.a
               href="tel:+91-40-1234-5678"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
@@ -148,7 +148,7 @@ const Header = () => {
             >
               <Phone className="w-4 h-4" />
               <span className="text-sm font-medium">Emergency</span>
-            </motion.a>
+            </motion.a> */}
 
             <motion.div 
               whileHover={{ scale: 1.05, y: -2 }} 
@@ -156,9 +156,9 @@ const Header = () => {
             >
               <Link
                 to="/contact"
-                className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-primary-600 to-plum-600 text-white rounded-xl hover:from-primary-700 hover:to-plum-700 shadow-glow hover:shadow-glow-lg text-sm font-medium transition-all duration-300"
+                className="flex items-center space-x-2 px-6 py-3 border-2 border-purple-600 text-purple-600 rounded-xl hover:from-primary-700 hover:to-plum-700 shadow-glow hover:shadow-glow-lg text-sm font-medium transition-all duration-300"
               >
-                <Sparkles className="w-4 h-4" />
+                <CalendarDays className="w-4 h-4" />
                 <span>Book Consultation</span>
               </Link>
             </motion.div>

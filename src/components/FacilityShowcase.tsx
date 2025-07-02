@@ -9,7 +9,6 @@ import {
   Activity,
   X,
   Play,
-  ArrowRight,
   Sparkles,
   Award,
   Clock,
@@ -19,8 +18,6 @@ import {
   Download,
   Share2,
   Eye,
-  ChevronLeft,
-  ChevronRight,
   Maximize2
 } from 'lucide-react';
 
@@ -35,7 +32,7 @@ const FacilityShowcase = () => {
       title: "ICU-Convertible HDUs",
       description: "State-of-the-art High Dependency Units that can be instantly converted to ICU standards for critical care needs",
       icon: Heart,
-      color: "from-red-500 to-pink-600",
+      color: "from-purple-200 to-purple-800",
       stats: { capacity: "20 Beds", conversion: "< 30 mins", monitoring: "24/7" },
       details: "Our HDUs feature advanced monitoring systems, ventilator support, and can be rapidly converted to full ICU capabilities. Each unit is equipped with central monitoring, emergency response systems, and specialized nursing stations."
     },
@@ -44,7 +41,7 @@ const FacilityShowcase = () => {
       title: "Positive & Negative Pressure Suites",
       description: "Advanced isolation suites with controlled air pressure systems for infection control and patient safety",
       icon: Shield,
-      color: "from-blue-500 to-cyan-600",
+      color: "from-purple-200 to-purple-800",
       stats: { suites: "8 Units", airChanges: "15/hour", filtration: "HEPA" },
       details: "These specialized suites maintain precise air pressure differentials to prevent cross-contamination. Equipped with HEPA filtration systems and real-time air quality monitoring for maximum patient and staff safety."
     },
@@ -53,7 +50,7 @@ const FacilityShowcase = () => {
       title: "Advanced Therapy Procedure Rooms",
       description: "Cutting-edge therapy rooms equipped with the latest rehabilitation technology and equipment",
       icon: Activity,
-      color: "from-green-500 to-emerald-600",
+      color: "from-purple-200 to-purple-800",
       stats: { rooms: "12 Rooms", equipment: "Latest Tech", capacity: "50+ patients/day" },
       details: "Each therapy room features robotic rehabilitation equipment, virtual reality systems, and advanced physiotherapy tools. Designed for optimal patient comfort and therapeutic outcomes."
     },
@@ -62,7 +59,7 @@ const FacilityShowcase = () => {
       title: "Internationally Trained Specialists",
       description: "Expert medical professionals with international certifications and extensive experience",
       icon: Users,
-      color: "from-purple-500 to-violet-600",
+      color: "from-purple-200 to-purple-800",
       stats: { specialists: "50+", experience: "15+ years", certifications: "International" },
       details: "Our team includes specialists trained in leading medical institutions worldwide, bringing cutting-edge knowledge and techniques to provide world-class care across all specialties."
     }
@@ -180,7 +177,7 @@ const FacilityShowcase = () => {
         </motion.div>
 
         {/* Facility Stats */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -209,7 +206,7 @@ const FacilityShowcase = () => {
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </motion.div> */}
 
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-2 gap-16 items-start">
@@ -237,7 +234,7 @@ const FacilityShowcase = () => {
                   >
                     <div className="bg-white dark:bg-dark-bg rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700 group-hover:-translate-y-1">
                       <div className="flex items-start space-x-4">
-                        <div className={`w-12 h-12 bg-gradient-to-br ${feature.color} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg flex-shrink-0`}>
+                        <div className={`w-10 h-10 bg-gradient-to-br ${feature.color} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg flex-shrink-0`}>
                           <feature.icon className="w-6 h-6 text-white" />
                         </div>
                         
@@ -245,11 +242,11 @@ const FacilityShowcase = () => {
                           <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-300">
                             {feature.title}
                           </h4>
-                          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4">
+                          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
                             {feature.description}
                           </p>
                           
-                          {/* Quick Stats */}
+                          {/* Quick Stats
                           <div className="flex flex-wrap gap-4 text-xs">
                             {Object.entries(feature.stats).map(([key, value]) => (
                               <div key={key} className="bg-gray-50 dark:bg-dark-surface px-3 py-1 rounded-full">
@@ -257,12 +254,12 @@ const FacilityShowcase = () => {
                                 <span className="text-gray-700 dark:text-gray-300 font-medium">{value}</span>
                               </div>
                             ))}
-                          </div>
+                          </div> */}
                           
-                          <div className="mt-3 flex items-center text-primary-600 dark:text-primary-400 text-sm font-medium">
+                          {/* <div className="mt-3 flex items-center text-primary-600 dark:text-primary-400 text-sm font-medium">
                             <span>Click to learn more</span>
                             <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </div>

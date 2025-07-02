@@ -10,9 +10,7 @@ import {
   X,
   ArrowRight,
   Sparkles,
-  Shield,
   Target,
-  Zap
 } from 'lucide-react';
 
 const RecoveryInfographic = () => {
@@ -264,7 +262,7 @@ const RecoveryInfographic = () => {
         </div>
 
         {/* Stats Section */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -295,7 +293,7 @@ const RecoveryInfographic = () => {
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </motion.div> */}
       </div>
 
       {/* Modal for detailed view */}

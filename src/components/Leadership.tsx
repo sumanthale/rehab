@@ -5,33 +5,33 @@ import { useState } from 'react';
 const Leadership = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
-  const achievements = [
-    {
-      icon: Award,
-      title: 'Clinical Excellence',
-      description: '25+ years of pioneering healthcare innovation',
-      color: 'from-blue-500 to-cyan-500'
-    },
-    {
-      icon: Users,
-      title: 'Compassionate Leadership',
-      description: 'Leading a team of 200+ healthcare professionals',
-      color: 'from-purple-500 to-violet-500'
-    },
-    {
-      icon: Heart,
-      title: 'Patient-Centered Vision',
-      description: 'Transforming 50,000+ lives through innovative care',
-      color: 'from-rose-500 to-pink-500'
-    }
-  ];
+  // const achievements = [
+  //   {
+  //     icon: Award,
+  //     title: 'Clinical Excellence',
+  //     description: '25+ years of pioneering healthcare innovation',
+  //     color: 'from-blue-500 to-cyan-500'
+  //   },
+  //   {
+  //     icon: Users,
+  //     title: 'Compassionate Leadership',
+  //     description: 'Leading a team of 200+ healthcare professionals',
+  //     color: 'from-purple-500 to-violet-500'
+  //   },
+  //   {
+  //     icon: Heart,
+  //     title: 'Patient-Centered Vision',
+  //     description: 'Transforming 50,000+ lives through innovative care',
+  //     color: 'from-rose-500 to-pink-500'
+  //   }
+  // ];
 
-  const stats = [
-    { value: '25+', label: 'Years Experience' },
-    { value: '50K+', label: 'Lives Transformed' },
-    { value: '200+', label: 'Team Members' },
-    { value: '15+', label: 'Awards Received' }
-  ];
+  // const stats = [
+  //   { value: '25+', label: 'Years Experience' },
+  //   { value: '50K+', label: 'Lives Transformed' },
+  //   { value: '200+', label: 'Team Members' },
+  //   { value: '15+', label: 'Awards Received' }
+  // ];
 
   return (
     <section className="py-20 bg-gradient-to-br from-slate-100 via-purple-50 to-lavender-100 dark:from-dark-surface dark:via-purple-900/10 dark:to-lavender-900/10 relative overflow-hidden">
@@ -68,7 +68,7 @@ const Leadership = () => {
                   <span className="text-gray-900 dark:text-white">
                     Under the visionary leadership of{' '}
                     <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-                      Dr. Chandrashekar
+                      Dr.Chandrashekar
                     </span>
                   </span>
                 </h2>
@@ -99,7 +99,7 @@ const Leadership = () => {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            {/* <div className="flex flex-col sm:flex-row gap-4">
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -118,7 +118,7 @@ const Leadership = () => {
                 Know More About Us
                 <ArrowRight className="ml-2 w-4 h-4" />
               </motion.button>
-            </div>
+            </div> */}
 
           
           </motion.div>
