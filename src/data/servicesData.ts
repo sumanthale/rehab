@@ -24,7 +24,7 @@ export const servicesData: Service[] = [
     name: 'Geriatric Care',
     description: 'We endorse health improvement in elderly people by preventing and treating illnesses coupled with motivation, self-guidance to achieve emotional stability for the existing disabilities.',
     shortDescription: 'Compassionate elder care',
-    icon: 'Users',
+    icon: 'https://anantharehab.com/wp-content/uploads/2025/03/service-icon-1.svg',
     gradient: 'from-purple-500 to-violet-600',
     image: 'https://anantharehab.com/wp-content/uploads/2025/03/neuro-degenerative-care.png',
     subServices: [
@@ -119,7 +119,7 @@ export const servicesData: Service[] = [
     name: 'Transitional Care',
     description: 'Seamless care coordination between hospital discharge and home recovery, reducing re-hospitalization and accelerating your recovery journey.',
     shortDescription: 'Reduce re-hospitalisation and accelerate your recovery',
-    icon: 'ArrowRightLeft',
+    icon: 'https://anantharehab.com/wp-content/uploads/2025/03/service-icon-4.svg',
     gradient: 'from-blue-500 to-cyan-600',
     image: 'https://anantharehab.com/wp-content/uploads/2025/03/neuro-degenerative-care.png',
     subServices: [
@@ -193,7 +193,7 @@ export const servicesData: Service[] = [
     name: 'Palliative Care',
     description: 'Compassionate end-of-life care focusing on comfort, dignity, and quality of life for patients with serious illnesses and their families.',
     shortDescription: 'Peaceful & pain-free end-of life care',
-    icon: 'Heart',
+    icon: 'https://anantharehab.com/wp-content/uploads/2025/03/service-icon-5.svg',
     gradient: 'from-rose-500 to-pink-600',
     image: 'https://anantharehab.com/wp-content/uploads/2025/03/neuro-degenerative-care.png',
     subServices: [
@@ -330,7 +330,7 @@ export const servicesData: Service[] = [
     name: 'Rehabilitation',
     description: 'Comprehensive rehabilitation services to help patients recover faster from strokes, heart attacks, falls, and various medical conditions through evidence-based therapies.',
     shortDescription: 'Recover faster from a Stroke, Heart Attack or from a fall',
-    icon: 'Activity',
+    icon: 'https://anantharehab.com/wp-content/uploads/2025/03/service-icon-3.svg',
     gradient: 'from-green-500 to-emerald-600',
     image: 'https://anantharehab.com/wp-content/uploads/2025/03/neuro-degenerative-care.png',
     subServices: [
@@ -530,7 +530,7 @@ export const servicesData: Service[] = [
     name: 'Pain Clinics',
     description: 'Advanced pain management solutions using cutting-edge techniques and personalized treatment plans to provide sustained relief from chronic pain.',
     shortDescription: 'Sustained relief from chronic pain',
-    icon: 'Zap',
+    icon: 'https://anantharehab.com/wp-content/uploads/2025/03/service-icon-2.svg',
     gradient: 'from-orange-500 to-red-600',
     image: 'https://anantharehab.com/wp-content/uploads/2025/03/neuro-degenerative-care.png',
     subServices: [

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Phone, Calendar, Sparkles } from "lucide-react";
+import { Menu, X, Phone, Calendar, ChevronDown, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import DarkModeToggle from "./DarkModeToggle";
@@ -7,6 +7,7 @@ import DarkModeToggle from "./DarkModeToggle";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -20,24 +21,35 @@ const Header = () => {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "Team", href: "/#team" },
+    {
+      name: "Services",
+      href: "/services",
+      dropdown: [
+        { name: "Geriatric Care", href: "/services/geriatric-care" },
+        { name: "Transitional Care", href: "/services/transitional-care" },
+        { name: "Palliative Care", href: "/services/palliative-care" },
+        { name: "Rehabilitation", href: "/services/rehabilitation" },
+        { name: "Pain Clinics", href: "/services/pain-clinics" },
+      ],
+    },
     { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ];
 
-  const isActive = (href) => {
+  const isActive = (href: string) => {
     if (href === "/") return location.pathname === "/";
     if (href.startsWith("/#"))
       return location.pathname === "/" && location.hash === href.substring(1);
-    return location.pathname === href || location.pathname.startsWith(href + "/");
+    return (
+      location.pathname === href || location.pathname.startsWith(href + "/")
+    );
   };
 
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-     className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
           ? "bg-glass-white dark:bg-glass-dark backdrop-blur-xl shadow-glass"
           : "bg-transparent"
@@ -56,32 +68,78 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-6">
             {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`relative text-sm font-medium transition-colors duration-200 py-2 px-1 ${
-                  isActive(item.href)
+              <div key={item.name} className="relative">
+                {item.dropdown ? (
+                  <div
+                    className="relative"
+                    onMouseEnter={() => setActiveDropdown(item.name)}
+                    onMouseLeave={() => setActiveDropdown(null)}
+                  >
+                    <Link
+                      to={item.href}
+                      className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200 ${
+                       isActive(item.href)
                     ? "text-primary-600 dark:text-primary-400"
                     : "text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
-                }`}
-              >
-                {item.name}
-                {isActive(item.href) && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary-600 dark:bg-primary-400 rounded-full"
-                    initial={false}
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                  />
+                      }`}
+                    >
+                      {item.name}
+                      <ChevronDown className="w-4 h-4 ml-1" />
+                    </Link>
+
+                    <AnimatePresence>
+                      {activeDropdown === item.name && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          className="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-large border border-neutral-200/50 py-2"
+                        >
+                          {item.dropdown.map((dropdownItem) => (
+                            <Link
+                              key={dropdownItem.name}
+                              to={dropdownItem.href}
+                              className="block px-4 py-3 text-sm text-secondary-700 hover:text-primary-600 hover:bg-primary-50 transition-colors duration-200"
+                            >
+                              {dropdownItem.name}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <Link
+                    to={item.href}
+                    className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200 ${
+                      isActive(item.href)
+                    ? "text-primary-600 dark:text-primary-400"
+                    : "text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
+                    }`}
+                  >
+                    {item.name}
+                    {isActive(item.href) && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary-600 dark:bg-primary-400 rounded-full"
+                        initial={false}
+                        transition={{
+                          type: "spring",
+                          stiffness: 500,
+                          damping: 30,
+                        }}
+                      />
+                    )}
+                  </Link>
                 )}
-              </Link>
+              </div>
             ))}
           </nav>
 
           {/* CTA Buttons & Dark Mode Toggle */}
-         <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-4">
             <DarkModeToggle />
-            
+
             <motion.a
               href="tel:+91-40-1234-5678"
               whileHover={{ scale: 1.05, y: -2 }}
@@ -89,9 +147,9 @@ const Header = () => {
               className="flex items-center space-x-2 px-4 py-2 bg-glass-white dark:bg-glass-dark backdrop-blur-md border border-white/20 dark:border-white/10 rounded-xl text-primary-600 dark:text-primary-400 hover:shadow-glass text-sm font-medium transition-all duration-300"
             >
               <Phone className="w-4 h-4" />
-              <span>Emergency</span>
+              <span className="text-sm font-medium">Emergency</span>
             </motion.a>
-            
+
             <motion.div 
               whileHover={{ scale: 1.05, y: -2 }} 
               whileTap={{ scale: 0.95 }}
@@ -113,7 +171,11 @@ const Header = () => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="p-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 transition"
             >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>
@@ -130,18 +192,33 @@ const Header = () => {
           >
             <div className="px-4 py-6 space-y-4">
               {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`block text-base font-medium py-3 px-4 rounded-xl transition-colors duration-200 ${
-                    isActive(item.href)
+                <div key={item.name}>
+                  <Link
+                    to={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`block text-base font-medium py-3 px-4 rounded-xl transition-colors duration-200 ${
+                      isActive(item.href)
                       ? "text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20"
                       : "text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20"
-                  }`}
-                >
-                  {item.name}
-                </Link>
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                  {item.dropdown && (
+                    <div className="ml-4 mt-2 space-y-2">
+                      {item.dropdown.map((dropdownItem) => (
+                        <Link
+                          key={dropdownItem.name}
+                          to={dropdownItem.href}
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block py-2 px-4 text-sm text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20"
+                        >
+                          {dropdownItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
               <div className="pt-4 space-y-3 border-t border-primary-100 dark:border-primary-800">
                 <a

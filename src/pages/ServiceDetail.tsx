@@ -5,29 +5,21 @@ import {
   ArrowRight,
   CheckCircle,
   Star,
-  Clock,
-  Users,
-  Award,
   Phone,
   Calendar,
-  Shield,
   Target,
-  TrendingUp,
   Heart,
   Play,
   Share2,
-  BookOpen,
   MessageCircle,
   MapPin,
   Sparkles,
-  Stethoscope,
-  Activity,
 } from "lucide-react";
 import { useState } from "react";
 import LotusIcon from "../components/LotusIcon";
 import LotusPattern from "../components/LotusPattern";
 import { servicesData } from "../data/servicesData";
-
+import MedicalPng from "../assets/services/medical.png";
 const ServiceDetail = () => {
   const { serviceId } = useParams();
   const service = servicesData.find((s) => s.id === serviceId);
@@ -57,37 +49,6 @@ const ServiceDetail = () => {
       </div>
     );
   }
-
-  const tabs = [
-    { id: "overview", label: "Overview", icon: BookOpen },
-    { id: "programs", label: "Programs", icon: Target },
-    { id: "process", label: "Process", icon: TrendingUp },
-    { id: "testimonials", label: "Success Stories", icon: Star },
-  ];
-
-  const faqs = [
-    {
-      question: `What makes ${service.name} at Anantha Rehab different?`,
-      answer: `Our ${service.name.toLowerCase()} program combines cutting-edge technology with personalized care plans. We use evidence-based treatments and have a multidisciplinary team of specialists working together to ensure optimal outcomes.`,
-    },
-    {
-      question: "How long does the treatment typically take?",
-      answer:
-        "Treatment duration varies based on individual needs and condition severity. Most patients see significant improvement within 4-12 weeks, with some requiring longer-term care for complex conditions.",
-    },
-    {
-      question: "What should I expect during my first visit?",
-      answer:
-        "Your first visit includes a comprehensive assessment, medical history review, physical examination, and development of a personalized treatment plan. We also provide education about your condition and treatment options.",
-    },
-    {
-      question: "Do you accept insurance?",
-      answer:
-        "Yes, we accept most major insurance plans. Our team will help verify your coverage and explain any out-of-pocket costs before treatment begins.",
-    },
-  ];
-
-
 
   return (
     <div className="min-h-screen bg-white dark:bg-dark-bg ">
@@ -148,41 +109,6 @@ const ServiceDetail = () => {
               </p>
 
               {/* Quick Stats */}
-              <div className="grid grid-cols-3 gap-6 mb-8">
-                <div className="text-center p-4 bg-white dark:bg-dark-bg rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
-                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mx-auto mb-3">
-                    <Award className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="text-2xl font-bold text-gray-900 dark:text-white">
-                    95%
-                  </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">
-                    Success Rate
-                  </div>
-                </div>
-                <div className="text-center p-4 bg-white dark:bg-dark-bg rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center mx-auto mb-3">
-                    <Users className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="text-2xl font-bold text-gray-900 dark:text-white">
-                    50+
-                  </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">
-                    Specialists
-                  </div>
-                </div>
-                <div className="text-center p-4 bg-white dark:bg-dark-bg rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
-                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-violet-600 rounded-xl flex items-center justify-center mx-auto mb-3">
-                    <Clock className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="text-2xl font-bold text-gray-900 dark:text-white">
-                    24/7
-                  </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">
-                    Support
-                  </div>
-                </div>
-              </div>
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
@@ -198,18 +124,7 @@ const ServiceDetail = () => {
                     Book Consultation
                   </Link>
                 </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <a
-                    href="tel:+91-40-1234-5678"
-                    className="inline-flex items-center px-8 py-4 border-2 border-primary-600 text-primary-600 dark:text-primary-400 font-semibold rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-200"
-                  >
-                    <Phone className="mr-2 w-5 h-5" />
-                    Call Now
-                  </a>
-                </motion.div>
+
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -230,53 +145,41 @@ const ServiceDetail = () => {
             >
               <div className="relative group">
                 <img
-                  src={service.image}
+                  src={MedicalPng}
                   alt={service.name}
-                  className="w-full h-[500px] object-cover rounded-3xl shadow-2xl"
+                  className="w-full h-[400px] object-contain rounded-3xl"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-3xl" />
-
-                {/* Play button overlay */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="w-20 h-20 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl group-hover:bg-white transition-colors duration-300"
-                  >
-                    <Play className="w-8 h-8 text-primary-600 ml-1" />
-                  </motion.button>
-                </div>
-
-                {/* Floating info cards */}
-                <div className="absolute -bottom-6 -left-6 bg-white dark:bg-dark-bg p-6 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-plum-600 rounded-xl flex items-center justify-center">
-                      <Heart className="w-6 h-6 text-white" />
+  
+                <div className="absolute -bottom-4 -left-4 bg-white dark:bg-dark-bg px-4 py-3 rounded-xl shadow-md border border-gray-100 dark:border-gray-700">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-plum-600 rounded-lg flex items-center justify-center">
+                      <Heart className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <div className="text-lg font-bold text-gray-900 dark:text-white">
+                      <div className="text-base font-semibold text-gray-900 dark:text-white">
                         1000+
                       </div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">
+                      <div className="text-xs text-gray-500 dark:text-gray-400">
                         Patients Treated
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="absolute -top-6 -right-6 bg-white dark:bg-dark-bg p-4 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700">
-                  <div className="flex items-center space-x-2">
+                {/* Top-right Stat Card */}
+                <div className="absolute -top-4 right-4 bg-white dark:bg-dark-bg px-3 py-2 rounded-xl shadow-md border border-gray-100 dark:border-gray-700">
+                  <div className="flex items-center space-x-1">
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className="w-4 h-4 text-yellow-400 fill-current"
+                        className="w-3.5 h-3.5 text-yellow-400 fill-current"
                       />
                     ))}
-                    <span className="text-sm font-semibold text-gray-900 dark:text-white ml-2">
+                    <span className="text-xs font-semibold text-gray-900 dark:text-white ml-1">
                       4.9/5
                     </span>
                   </div>
-                  <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                  <div className="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">
                     Patient Rating
                   </div>
                 </div>
@@ -287,7 +190,6 @@ const ServiceDetail = () => {
       </section>
 
       {/* Navigation Tabs */}
-
 
       {/* Tab Content */}
       <section className="py-16">
