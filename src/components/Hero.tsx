@@ -80,7 +80,7 @@ const ModernHero = () => {
               {/* <Hospital />  */}
               <h1 className="">
                 
-                <span className="uppercase text-slate-900 text-md tracking-[.5em] dark:text-white bg-gradient-to-l from-primary-600 to-plum-700 bg-clip-text text-transparent">
+                <span className="uppercase text-slate-900 md:text-md lg:text-md text-sm tracking-[.5em] dark:text-white bg-gradient-to-l from-primary-600 to-plum-700 bg-clip-text text-transparent">
                   South India’s Largest <br/>
                 </span>
                 <span className="font-bold text-2xl">
@@ -200,7 +200,7 @@ const ModernHero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2, duration: 0.6 }}
-                className="absolute top-0 -left-10 bg-glass-white dark:bg-glass-dark backdrop-blur-md p-3 rounded-2xl shadow-glass border border-white/20 dark:border-white/10 animate-float"
+                className="absolute -bottom-0 lg:bottom-0 left-0 md:-left-10 bg-glass-white dark:bg-glass-dark backdrop-blur-md p-3 rounded-2xl shadow-glass border border-white/20 dark:border-white/10 animate-float"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-gradient-to-r from-primary-600 to-plum-600 rounded-md flex items-center justify-center shadow-lg">
@@ -221,7 +221,7 @@ const ModernHero = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.4, duration: 0.6 }}
-                className="absolute -top-4 -right-6 bg-glass-white dark:bg-glass-dark backdrop-blur-md p-3 rounded-2xl shadow-glass border border-white/20 dark:border-white/10 animate-float animation-delay-2000"
+                className="absolute md:-top-4 md:-right-6 -top-4 -right-2 bg-glass-white dark:bg-glass-dark backdrop-blur-md p-3 rounded-2xl shadow-glass border border-white/20 dark:border-white/10 animate-float animation-delay-2000"
               >
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 bg-gradient-to-r from-blue-400 to-purple-400 rounded-xl flex items-center justify-center shadow-lg">
