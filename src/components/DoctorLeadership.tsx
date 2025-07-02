@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Award, 
   GraduationCap, 
@@ -22,446 +22,400 @@ import {
   Eye,
   Microscope,
   UserCheck,
-  Sparkles
+  Sparkles,
+  Play,
+  Clock,
+  MapPin
 } from 'lucide-react';
 import { useState } from 'react';
 
 const DoctorLeadership = () => {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeProcess, setActiveProcess] = useState(0);
 
   const doctorCredentials = [
     {
       icon: Award,
       title: 'Gold Medalist',
-      description: 'Manipal University',
-      color: 'from-yellow-500 to-orange-500'
+      subtitle: 'Manipal University',
+      description: 'Academic excellence in medical education',
+      color: 'from-amber-400 to-orange-500'
     },
     {
       icon: GraduationCap,
       title: 'Masters in Pain Medicine',
-      description: 'University of South Wales (UK)',
-      color: 'from-blue-500 to-indigo-500'
+      subtitle: 'University of South Wales (UK)',
+      description: 'International qualification in pain management',
+      color: 'from-blue-500 to-indigo-600'
     },
     {
       icon: Globe,
-      title: 'Fellow - Indian Academy of Pain Medicine',
-      description: 'EDRA (Europe)',
-      color: 'from-purple-500 to-violet-500'
+      title: 'Fellow - Indian Academy',
+      subtitle: 'Pain Medicine (EDRA Europe)',
+      description: 'Recognized expertise in interventional procedures',
+      color: 'from-purple-500 to-violet-600'
     },
     {
       icon: Zap,
       title: 'Licensed in Cooled RFA',
-      description: 'Rare credential in India',
-      color: 'from-green-500 to-emerald-500'
-    },
-    {
-      icon: Users,
-      title: '10,000+ Patients Treated',
-      description: 'With compassion, precision, and care',
-      color: 'from-rose-500 to-pink-500'
+      subtitle: 'Rare credential in India',
+      description: 'Advanced radiofrequency ablation techniques',
+      color: 'from-emerald-500 to-teal-600'
     }
   ];
 
-  const healingSteps = [
+  const healingProcess = [
     {
       step: 1,
-      title: 'In-Depth Consultation with Dr. Anusha',
-      description: 'Comprehensive assessment and personalized evaluation by India\'s most qualified pain physician',
-      icon: Stethoscope,
+      title: 'Comprehensive Assessment',
+      subtitle: 'In-depth consultation with Dr. Anusha',
       duration: '60-90 minutes',
-      details: [
-        'Detailed medical history review',
-        'Physical examination and pain assessment',
-        'Discussion of symptoms and lifestyle factors',
-        'Initial treatment plan development'
-      ],
-      color: 'from-blue-500 to-cyan-500'
+      icon: Stethoscope,
+      description: 'Detailed medical history, physical examination, and personalized evaluation by India\'s most qualified pain physician.',
+      highlights: [
+        'Complete medical history review',
+        'Comprehensive physical examination',
+        'Pain assessment and analysis',
+        'Treatment goal discussion'
+      ]
     },
     {
       step: 2,
-      title: 'Advanced Imaging & Diagnosis',
-      description: 'State-of-the-art diagnostic tools including C-Arm and Ultrasound for precise identification',
-      icon: Eye,
+      title: 'Advanced Diagnostics',
+      subtitle: 'Precision imaging and analysis',
       duration: '30-60 minutes',
-      details: [
+      icon: Eye,
+      description: 'State-of-the-art diagnostic tools including C-Arm and Ultrasound for precise identification of pain sources.',
+      highlights: [
         'C-Arm guided imaging',
         'Real-time ultrasound guidance',
         'Advanced diagnostic protocols',
-        'Precise pain source identification'
-      ],
-      color: 'from-purple-500 to-violet-500'
+        'Precise pain localization'
+      ]
     },
     {
       step: 3,
-      title: 'Non-Surgical Interventions',
-      description: 'Advanced procedures including RFA, PRP, and targeted nerve blocks for optimal pain relief',
-      icon: Microscope,
+      title: 'Targeted Interventions',
+      subtitle: 'Non-surgical pain relief procedures',
       duration: '45-120 minutes',
-      details: [
-        'Cooled Radiofrequency Ablation (RFA)',
-        'Platelet-Rich Plasma (PRP) therapy',
+      icon: Microscope,
+      description: 'Advanced procedures including RFA, PRP, and targeted nerve blocks for optimal pain relief without surgery.',
+      highlights: [
+        'Cooled Radiofrequency Ablation',
+        'Platelet-Rich Plasma therapy',
         'Precision nerve blocks',
-        'Minimally invasive procedures'
-      ],
-      color: 'from-green-500 to-emerald-500'
+        'Minimally invasive techniques'
+      ]
     },
     {
       step: 4,
-      title: 'Recovery Support',
-      description: 'Comprehensive rehabilitation including physiotherapy, nutrition, psychology, and rehab',
-      icon: Heart,
+      title: 'Holistic Recovery',
+      subtitle: 'Comprehensive rehabilitation support',
       duration: 'Ongoing',
-      details: [
-        'Personalized physiotherapy programs',
+      icon: Heart,
+      description: 'Integrated care including physiotherapy, nutrition counseling, and psychological support for complete healing.',
+      highlights: [
+        'Personalized physiotherapy',
         'Clinical nutrition planning',
-        'Psychological support and counseling',
-        'Comprehensive rehabilitation protocols'
-      ],
-      color: 'from-orange-500 to-red-500'
-    },
-    {
-      step: 5,
-      title: 'Integrated Care Team',
-      description: 'Multidisciplinary collaboration ensuring comprehensive and coordinated healing',
-      icon: UserCheck,
-      duration: 'Throughout journey',
-      details: [
-        'In-house orthopedic surgeons',
-        'Expert physiotherapists',
-        'Clinical dietitians',
-        'Rehabilitation psychologists'
-      ],
-      color: 'from-indigo-500 to-purple-500'
+        'Psychological counseling',
+        'Lifestyle modification guidance'
+      ]
     }
   ];
 
   const achievements = [
-    { value: '15+', label: 'Years Experience' },
-    { value: '10K+', label: 'Patients Treated' },
-    { value: '95%', label: 'Success Rate' },
-    { value: '100%', label: 'Personal Care' }
+    { value: '15+', label: 'Years Experience', icon: Clock },
+    { value: '10K+', label: 'Patients Treated', icon: Users },
+    { value: '95%', label: 'Success Rate', icon: Target },
+    { value: '100%', label: 'Personal Care', icon: Heart }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-primary-50/30 dark:from-dark-surface dark:via-dark-bg dark:to-primary-900/10 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-primary-300 to-lavender-300 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-blue-300 to-cyan-300 rounded-full blur-3xl" />
+    <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-dark-surface dark:via-dark-bg dark:to-blue-900/10 relative overflow-hidden">
+      {/* Subtle Background Elements */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-blue-300 to-purple-300 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-purple-300 to-pink-300 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Doctor Section */}
-        <div className="mb-20">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="inline-flex items-center px-8 py-4 bg-white/80 dark:bg-dark-bg/80 backdrop-blur-xl rounded-full border border-primary-200 dark:border-primary-800 shadow-lg mb-8">
-              <Award className="w-5 h-5 text-primary-600 dark:text-primary-400 mr-3" />
-              <span className="text-primary-700 dark:text-primary-300 font-semibold">Meet Our Leader</span>
-            </div>
-            
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="text-gray-900 dark:text-white">Meet </span>
-              <span className="bg-gradient-to-r from-primary-600 via-purple-600 to-plum-700 bg-clip-text text-transparent">
-                Dr. Anusha Karumuri
-              </span>
-            </h2>
-            
-            <p className="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
-              India's Highest Qualified Interventional Pain Physician
-            </p>
-          </motion.div>
+        {/* Header Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
+          <div className="inline-flex items-center px-6 py-3 bg-white/80 dark:bg-dark-bg/80 backdrop-blur-sm rounded-full border border-gray-200 dark:border-gray-700 shadow-sm mb-8">
+            <Award className="w-5 h-5 text-blue-600 dark:text-blue-400 mr-3" />
+            <span className="text-gray-700 dark:text-gray-300 font-medium">Expert Leadership</span>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            <span className="text-gray-900 dark:text-white">Meet </span>
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent">
+              Dr. Anusha Karumuri
+            </span>
+          </h2>
+          
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            India's most qualified interventional pain physician, leading your personalized journey to recovery
+          </p>
+        </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
-            {/* Doctor Image and Info */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="relative bg-white/90 dark:bg-dark-bg/90 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/50 dark:border-gray-700/50">
-                {/* Doctor Image Placeholder */}
-                <div className="relative aspect-[3/4] bg-gradient-to-br from-primary-100 to-lavender-100 dark:from-primary-900/30 dark:to-lavender-900/30 rounded-2xl overflow-hidden mb-6">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-24 h-24 bg-gradient-to-br from-primary-500 to-plum-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Stethoscope className="w-12 h-12 text-white" />
-                      </div>
-                      <h3 className="text-xl font-bold text-gray-700 dark:text-gray-300 mb-2">
-                        Dr. Anusha Karumuri
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-400 text-sm">
-                        Professional Portrait
-                      </p>
+        {/* Doctor Profile Section */}
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
+          {/* Doctor Image and Stats */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div className="relative bg-white/90 dark:bg-dark-bg/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-gray-100 dark:border-gray-700">
+              {/* Doctor Image Placeholder */}
+              <div className="relative aspect-[4/5] bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl overflow-hidden mb-8">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Stethoscope className="w-12 h-12 text-white" />
                     </div>
-                  </div>
-                  
-                  {/* Floating Achievement Badge */}
-                  <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-                    Gold Medalist
+                    <h3 className="text-xl font-bold text-gray-700 dark:text-gray-300 mb-2">
+                      Dr. Anusha Karumuri
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">
+                      Director & Pain Medicine Specialist
+                    </p>
                   </div>
                 </div>
-
-                {/* Quick Stats */}
-                <div className="grid grid-cols-2 gap-4">
-                  {achievements.map((achievement, index) => (
-                    <div key={index} className="text-center p-4 bg-gray-50 dark:bg-dark-surface rounded-xl">
-                      <div className="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-1">
-                        {achievement.value}
-                      </div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">
-                        {achievement.label}
-                      </div>
-                    </div>
-                  ))}
+                
+                {/* Achievement Badge */}
+                <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                  Gold Medalist
                 </div>
               </div>
 
-              {/* Floating Credential Cards */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="absolute -bottom-6 -left-6 bg-white dark:bg-dark-bg p-6 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700"
-              >
-                <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center">
-                    <GraduationCap className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-gray-900 dark:text-white text-sm">UK Qualified</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400">University of South Wales</div>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 }}
-                className="absolute -top-6 -right-6 bg-white dark:bg-dark-bg p-4 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700"
-              >
-                <div className="flex items-center space-x-2">
-                  <Zap className="w-5 h-5 text-green-600 dark:text-green-400" />
-                  <span className="text-sm font-semibold text-gray-900 dark:text-white">RFA Licensed</span>
-                </div>
-                <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Rare in India</div>
-              </motion.div>
-            </motion.div>
-
-            {/* Credentials and Quote */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              {/* Credentials Grid */}
-              <div className="space-y-6">
-                {doctorCredentials.map((credential, index) => (
-                  <motion.div
+              {/* Quick Stats Grid */}
+              <div className="grid grid-cols-2 gap-4">
+                {achievements.map((achievement, index) => (
+                  <motion.div 
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="flex items-center space-x-4 p-4 bg-white/60 dark:bg-dark-bg/60 backdrop-blur-xl rounded-2xl border border-white/50 dark:border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300"
+                    className="text-center p-4 bg-gray-50 dark:bg-dark-surface rounded-xl hover:shadow-md transition-shadow duration-300"
                   >
-                    <div className={`w-12 h-12 bg-gradient-to-br ${credential.color} rounded-xl flex items-center justify-center shadow-lg`}>
-                      <credential.icon className="w-6 h-6 text-white" />
+                    <achievement.icon className="w-6 h-6 text-blue-600 dark:text-blue-400 mx-auto mb-2" />
+                    <div className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+                      {achievement.value}
                     </div>
-                    <div>
-                      <h3 className="font-bold text-gray-900 dark:text-white">{credential.title}</h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">{credential.description}</p>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      {achievement.label}
                     </div>
                   </motion.div>
                 ))}
               </div>
+            </div>
+          </motion.div>
 
-              {/* Quote Section */}
-              <div className="relative bg-gradient-to-br from-primary-50 to-lavender-50 dark:from-primary-900/20 dark:to-lavender-900/20 p-8 rounded-3xl border border-primary-200 dark:border-primary-800">
-                <Quote className="absolute top-4 left-4 w-8 h-8 text-primary-300 dark:text-primary-700" />
-                <div className="relative z-10">
-                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic mb-4 pl-8">
-                    "Pain shouldn't define your life. With the right diagnosis and advanced care, 
-                    we help you move freely again — without depending on surgery or painkillers."
-                  </p>
-                  <div className="pl-8">
-                    <p className="font-semibold text-primary-700 dark:text-primary-300">
-                      - Dr. Anusha Karumuri
-                    </p>
+          {/* Credentials and Quote */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            {/* Credentials */}
+            <div className="space-y-6">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                Exceptional Qualifications
+              </h3>
+              
+              {doctorCredentials.map((credential, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="group"
+                >
+                  <div className="flex items-start space-x-4 p-6 bg-white dark:bg-dark-bg rounded-2xl border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                    <div className={`w-12 h-12 bg-gradient-to-br ${credential.color} rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300`}>
+                      <credential.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-gray-900 dark:text-white text-lg mb-1">
+                        {credential.title}
+                      </h4>
+                      <p className="text-blue-600 dark:text-blue-400 font-medium text-sm mb-2">
+                        {credential.subtitle}
+                      </p>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm">
+                        {credential.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              ))}
+            </div>
 
-              {/* Unique Approach */}
-              <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-6 rounded-2xl border border-green-200 dark:border-green-800">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Shield className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-gray-900 dark:text-white mb-2">
-                      Personal Leadership Guarantee
-                    </h4>
-                    <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                      Unlike most clinics, Dr. Anusha personally leads every treatment plan — 
-                      not delegated to junior doctors or assistants.
-                    </p>
-                  </div>
-                </div>
+            {/* Quote */}
+            <div className="relative bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-8 rounded-3xl border border-blue-200 dark:border-blue-800">
+              <Quote className="absolute top-4 left-4 w-8 h-8 text-blue-300 dark:text-blue-700" />
+              <div className="relative z-10 pl-8">
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic mb-4">
+                  "Pain shouldn't define your life. With the right diagnosis and advanced care, 
+                  we help you move freely again — without depending on surgery or painkillers."
+                </p>
+                <p className="font-semibold text-blue-700 dark:text-blue-300">
+                  - Dr. Anusha Karumuri
+                </p>
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
 
         {/* Healing Process Section */}
-        <div>
-          {/* Process Header */}
+        <div className="mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center px-8 py-4 bg-white/80 dark:bg-dark-bg/80 backdrop-blur-xl rounded-full border border-primary-200 dark:border-primary-800 shadow-lg mb-8">
-              <Target className="w-5 h-5 text-primary-600 dark:text-primary-400 mr-3" />
-              <span className="text-primary-700 dark:text-primary-300 font-semibold">Our Healing Process</span>
+            <div className="inline-flex items-center px-6 py-3 bg-white/80 dark:bg-dark-bg/80 backdrop-blur-sm rounded-full border border-gray-200 dark:border-gray-700 shadow-sm mb-8">
+              <Target className="w-5 h-5 text-purple-600 dark:text-purple-400 mr-3" />
+              <span className="text-gray-700 dark:text-gray-300 font-medium">Our Process</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="text-gray-900 dark:text-white">🧭 How We Help You </span>
-              <span className="bg-gradient-to-r from-primary-600 via-purple-600 to-plum-700 bg-clip-text text-transparent">
-                Heal
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              <span className="text-gray-900 dark:text-white">Your Journey to </span>
+              <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                Pain-Free Living
               </span>
-              <span className="text-gray-900 dark:text-white"> — Step-by-Step</span>
             </h2>
             
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-              At Anantha, pain care is never fragmented. It's a multidisciplinary approach — tailored for you.
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              A systematic, personalized approach to diagnosis, treatment, and recovery
             </p>
           </motion.div>
 
-          {/* Interactive Process Steps */}
-          <div className="relative">
-            {/* Connection Line */}
-            <div className="absolute left-8 top-16 bottom-16 w-1 bg-gradient-to-b from-primary-200 via-purple-200 to-plum-200 dark:from-primary-800 dark:via-purple-800 dark:to-plum-800 hidden lg:block rounded-full" />
-            
-            <div className="space-y-8">
-              {healingSteps.map((step, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
-                  className="relative"
-                  onMouseEnter={() => setActiveStep(index)}
-                >
-                  <div className="flex items-start space-x-8">
-                    {/* Step Number */}
-                    <div className="relative z-10 flex-shrink-0">
-                      <div className={`w-16 h-16 bg-gradient-to-br ${step.color} rounded-2xl flex items-center justify-center shadow-xl ${activeStep === index ? 'scale-110' : ''} transition-transform duration-300`}>
-                        <span className="text-white font-bold text-lg">{step.step}</span>
-                      </div>
-                      <div className="absolute -inset-2 bg-gradient-to-br from-white/50 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    </div>
-                    
-                    {/* Content */}
-                    <div className="flex-1">
-                      <div className={`bg-white/80 dark:bg-dark-bg/80 backdrop-blur-xl p-8 rounded-3xl shadow-xl border border-white/50 dark:border-gray-700/50 hover:shadow-2xl transition-all duration-500 ${activeStep === index ? 'scale-105 shadow-2xl' : ''}`}>
-                        <div className="grid lg:grid-cols-3 gap-8 items-start">
-                          {/* Main Content */}
-                          <div className="lg:col-span-2">
-                            <div className="flex items-center space-x-4 mb-4">
-                              <div className={`w-12 h-12 bg-gradient-to-br ${step.color} rounded-xl flex items-center justify-center`}>
-                                <step.icon className="w-6 h-6 text-white" />
-                              </div>
-                              <div>
-                                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                                  {step.title}
-                                </h3>
-                                <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
-                                  <span>Duration: {step.duration}</span>
-                                </div>
-                              </div>
-                            </div>
-                            
-                            <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-                              {step.description}
-                            </p>
-                            
-                            {/* Details Grid */}
-                            <div className="grid sm:grid-cols-2 gap-3">
-                              {step.details.map((detail, idx) => (
-                                <div key={idx} className="flex items-center space-x-3">
-                                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                                  <span className="text-sm text-gray-600 dark:text-gray-300">{detail}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                          
-                          {/* Visual Element */}
-                          <div className="lg:col-span-1">
-                            <div className={`aspect-square bg-gradient-to-br ${step.color} opacity-10 rounded-2xl flex items-center justify-center relative overflow-hidden`}>
-                              <step.icon className="w-16 h-16 text-gray-400 dark:text-gray-600" />
-                              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+          {/* Process Steps */}
+          <div className="grid lg:grid-cols-4 gap-8">
+            {healingProcess.map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="group cursor-pointer"
+                onMouseEnter={() => setActiveProcess(index)}
+              >
+                <div className={`relative bg-white dark:bg-dark-bg rounded-3xl p-8 shadow-lg border transition-all duration-500 ${
+                  activeProcess === index 
+                    ? 'border-blue-200 dark:border-blue-800 shadow-xl -translate-y-2' 
+                    : 'border-gray-100 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1'
+                }`}>
+                  {/* Step Number */}
+                  <div className="absolute -top-4 left-8">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors duration-300 ${
+                      activeProcess === index 
+                        ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white' 
+                        : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                    }`}>
+                      {step.step}
                     </div>
                   </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
 
-          {/* Summary Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16 bg-gradient-to-r from-primary-600 via-purple-600 to-plum-700 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden"
-          >
+                  {/* Icon */}
+                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 ${
+                    activeProcess === index 
+                      ? 'bg-gradient-to-br from-blue-500 to-purple-600 scale-110' 
+                      : 'bg-gray-100 dark:bg-gray-700 group-hover:scale-105'
+                  }`}>
+                    <step.icon className={`w-8 h-8 transition-colors duration-300 ${
+                      activeProcess === index ? 'text-white' : 'text-gray-600 dark:text-gray-400'
+                    }`} />
+                  </div>
+
+                  {/* Content */}
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                        {step.title}
+                      </h3>
+                      <p className="text-blue-600 dark:text-blue-400 font-medium text-sm mb-2">
+                        {step.subtitle}
+                      </p>
+                      <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
+                        <Clock className="w-4 h-4 mr-2" />
+                        {step.duration}
+                      </div>
+                    </div>
+
+                    <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4">
+                      {step.description}
+                    </p>
+
+                    {/* Highlights */}
+                    <div className="space-y-2">
+                      {step.highlights.slice(0, activeProcess === index ? 4 : 2).map((highlight, idx) => (
+                        <div key={idx} className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                          <CheckCircle className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                          {highlight}
+                        </div>
+                      ))}
+                      {step.highlights.length > 2 && activeProcess !== index && (
+                        <div className="text-sm text-blue-600 dark:text-blue-400 font-medium">
+                          +{step.highlights.length - 2} more details
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 rounded-3xl p-12 text-white relative overflow-hidden">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10">
               <div className="absolute top-10 right-10 w-32 h-32 bg-white rounded-full" />
               <div className="absolute bottom-10 left-10 w-24 h-24 bg-white rounded-full" />
-              <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-white rounded-full" />
             </div>
             
-            <div className="relative z-10 text-center">
+            <div className="relative z-10 max-w-3xl mx-auto">
               <div className="inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium mb-6">
                 <Sparkles className="w-4 h-4 mr-2" />
-                Comprehensive Care Ecosystem
+                Start Your Recovery Today
               </div>
               
               <h3 className="text-3xl md:text-4xl font-bold mb-6">
-                Experience Dr. Anusha's Personal Care
+                Experience Dr. Anusha's Expert Care
               </h3>
-              <p className="text-xl text-primary-100 mb-8 max-w-3xl mx-auto">
-                From initial consultation to complete recovery, Dr. Anusha personally oversees 
-                every aspect of your healing journey with our integrated multidisciplinary team.
+              <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+                Take the first step towards a pain-free life with India's most qualified 
+                interventional pain physician and our comprehensive care team.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center px-8 py-4 bg-white text-primary-700 font-semibold rounded-xl hover:bg-primary-50 transition-all duration-200 shadow-lg"
+                  className="inline-flex items-center px-8 py-4 bg-white text-blue-700 font-semibold rounded-xl hover:bg-blue-50 transition-all duration-200 shadow-lg"
                 >
                   <Calendar className="mr-2 w-5 h-5" />
-                  Book Consultation with Dr. Anusha
+                  Book Consultation
                 </motion.button>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -473,9 +427,21 @@ const DoctorLeadership = () => {
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </motion.button>
               </div>
+
+              {/* Contact Info */}
+              <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-6 text-blue-100">
+                <div className="flex items-center">
+                  <MapPin className="w-4 h-4 mr-2" />
+                  <span className="text-sm">Banjara Hills, Hyderabad</span>
+                </div>
+                <div className="flex items-center">
+                  <Clock className="w-4 h-4 mr-2" />
+                  <span className="text-sm">Available 24/7</span>
+                </div>
+              </div>
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
