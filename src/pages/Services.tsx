@@ -16,7 +16,7 @@ const Services = () => {
     <div className="min-h-screen bg-gradient-to-br from-primary-50 to-lavender-50 dark:bg-dark-bg">
       {/* Hero Section */}
       <section className="relative py-16 dark:from-dark-surface dark:to-dark-bg overflow-hidden">
-        <LotusIcon className="absolute top-8 right-8 w-28 h-28 text-primary-300 opacity-10" />
+        <LotusIcon className="absolute top-8 right-8 w-28 h-28 text-primary-800 " />
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
@@ -24,11 +24,11 @@ const Services = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-6"
           >
-            <div className="inline-flex items-center px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-gray-600 dark:text-primary-300 rounded-full text-sm font-medium mb-4">
+            <div className="inline-flex items-center px-4 py-2 bg-primary-500 dark:bg-primary-900/30 text-white dark:text-primary-300 rounded-full text-sm font-medium mb-4">
               <LotusIcon size="sm" />
               <span className="ml-2">Our Services</span>
             </div>
-            <h2 className="text-2xl md:text-5xl  text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-5xl  text-primary-700 dark:text-white mb-4">
               Comprehensive{" "}
               <span className="bg-gradient-to-r font-bold from-primary-600 to-plum-700 bg-clip-text text-transparent">
                 Healthcare Solutions
